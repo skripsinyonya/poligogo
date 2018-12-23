@@ -3,7 +3,7 @@
 
 	$crud = new crud;
 
-	$id_penyakit = $_POST['id_penyakit'];
-	$crud->hapus($id_penyakit);
+	$id_tindakan = $_POST['id_tindakan'];
+	$crud->hapus($id_tindakan);
 
 ?>

@@ -54,9 +54,8 @@
 
 	    }
 
-	    public function hapus()
+	    public function hapus($id_tindakan)
 	    {		
-	    	$id_tindakan = $_POST['id_tindakan'];
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
 
 	    	$query = mysqli_query($mysqli, "delete from $this->table where id_tindakan = '$id_tindakan'");
@@ -84,11 +83,29 @@
 	    {
 	    	
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
-	    	$query = mysqli_query($mysqli, 'select * from tindakan where id ="'.$ids.'"');
+	    	$query = mysqli_query($mysqli, 'select * from tindakan where id_tindakan ="'.$id.'"');
 
 	    	$result = mysqli_fetch_assoc($query);
 	    	return $result;
 
+	    }
+
+	    public function edit($id, $data)
+	    {
+	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
+	    	$query = mysqli_query($mysqli, 'update tindakan set nama_tindakan="'.$data['nama_tindakan'].'" where id_tindakan = "'.$id.'"');
+
+	    	#$numrows = mysqli_fetch_assoc($query);
+
+	    	if($query == true){
+	    		
+	    		echo "Berhasil mengedit data";
+
+	    	}else{
+
+	    		echo 'Galat';
+
+	    	}
 	    }
 
 	     function get_pasien()

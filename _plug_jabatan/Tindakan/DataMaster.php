@@ -2,8 +2,8 @@
 require 'Crud.php';
 $crud = new crud;
 ?>
-<div class="modal fade" id="Modal-ubah" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
+<div class="modal fade" id="Modal-ubah" tabindex="-1" role="dialog" aria-labelledby="largemodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
@@ -15,7 +15,7 @@ $crud = new crud;
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Confirm</button>
+                <button type="submit" class="btn btn-primary" id='btn-inpedit'>Confirm</button>
             </div>
         </div>
     </div>
@@ -78,6 +78,23 @@ $crud = new crud;
             
         });
 
+        $("#btn-inpedit").click(function() {
+            var id_tindakan = $('#modal-id_tindakan').val();
+            var icd_cm = $("#modal-icd_cm").val();
+            var nama_tindakan = $("#modal-nama_tindakan").val();
+           
+           $.ajax({
+               url: '<?php echo base_url('_plug_jabatan/Tindakan/Edit.php')?>',
+               type: 'POST',
+               data: {id_tindakan : id_tindakan, icd_cm : icd_cm, nama_tindakan : nama_tindakan},
+               success:function(data){
+                alert(data);
+                window.location = 'Index.php';
+                /*$("#datatables-master").load('<?php echo base_url('_plug_jabatan/Tindakan/DataMaster.php');?>');*/
+               }
+           })           
+        });
+
 
             <?php
                 foreach ($crud->get_data() as $key_data => $value_data) {
@@ -91,7 +108,7 @@ $crud = new crud;
                             var hapus = false;
                             if(!hapus){
                                 hapus = true;
-                                $.post('<?php echo base_url('_plug_jabatan/Tindakan/Delete.php');?>', {id: id}, function(data) {
+                                $.post('<?php echo base_url('_plug_jabatan/Tindakan/Delete.php');?>', {id_tindakan: id}, function(data) {
                                     alert(data);
                                     $("#datatables-master").load('<?php echo base_url('_plug_jabatan/Tindakan/DataMaster.php');?>');
                                 });
