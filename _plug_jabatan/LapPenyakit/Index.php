@@ -21,6 +21,9 @@ $today = $crud->today();
 /*echo ($today['now']);
 die;*/
 ?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -275,7 +278,7 @@ die;*/
                                     echo '<li class="menu-item-has-children dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lap. Kunjungan Pasien</a>
 
-                                            <ul class="sub-menu children dropdown-menu">
+                                            <ul class="nav nav-third-level">
                                                 <li><a href="'.base_url('_plug_jabatan/Periode').'">Periode</a></li>
                                                 <li><a href="'.base_url('_plug_jabatan/LapTindakan').'">Laporan Tindakan</a></li>
                                                 <li><a href="'.base_url('_plug_jabatan/LapPenyakit').'">Laporan Penyakit</a></li>
@@ -289,13 +292,12 @@ die;*/
                     </div>
                     
                 </aside>
-
         <div id="page-wrapper" style="margin-top: 70px;">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            
+                        <div class="panel-heading" style="font-size: large;">
+                            Data Pegawai
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -314,7 +316,7 @@ die;*/
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
-                                    <h4>Data Penyakit</h4>
+                                    <h4>Data Tab</h4>
                                    <div class="table-responsive" id="datatables-master">
                                         
                                     </div>
@@ -337,9 +339,8 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-   <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
-<script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
-
+    <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
+        <script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
 
     <!-- Page-Level Plugin Scripts - Panels and Wells -->
 
@@ -357,20 +358,8 @@ die;*/
             Output.src= URL.createObjectURL(event.target.files[0]);
         };
 
-
-
-
-
-
-
-
-
-
-
-
-
-    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Penyakit/DataPenyakit.php');?>');
-    $('#tambah').load('<?php echo base_url('_plug_jabatan/Penyakit/TambahMaster.php');?>');
+    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Master/DataMaster.php');?>');
+    $('#tambah').load('<?php echo base_url('_plug_jabatan/Master/TambahMaster.php');?>');
     </script>
 
 </body>

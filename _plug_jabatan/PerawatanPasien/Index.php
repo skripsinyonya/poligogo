@@ -21,6 +21,9 @@ $today = $crud->today();
 /*echo ($today['now']);
 die;*/
 ?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="en">
 
@@ -294,8 +297,8 @@ die;*/
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            
+                        <div class="panel-heading" style="font-size: large;">
+                            Data Pegawai
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -314,7 +317,7 @@ die;*/
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
-                                    <h4>Data Penyakit</h4>
+                                    <h4>Data Tab</h4>
                                    <div class="table-responsive" id="datatables-master">
                                         
                                     </div>
@@ -337,7 +340,7 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-   <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
+    <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
 <script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
 
 
@@ -357,20 +360,8 @@ die;*/
             Output.src= URL.createObjectURL(event.target.files[0]);
         };
 
-
-
-
-
-
-
-
-
-
-
-
-
-    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Penyakit/DataPenyakit.php');?>');
-    $('#tambah').load('<?php echo base_url('_plug_jabatan/Penyakit/TambahMaster.php');?>');
+    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Master/DataMaster.php');?>');
+    $('#tambah').load('<?php echo base_url('_plug_jabatan/Master/TambahMaster.php');?>');
     </script>
 
 </body>

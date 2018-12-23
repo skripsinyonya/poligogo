@@ -72,7 +72,7 @@ die;*/
                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <!-- <div class="dropdown-divider"></div> -->
-                                    <a class="dropdown-item" href="auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
+                                    <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
                                 </div>
                             </li>
                         </ul>
@@ -344,11 +344,8 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="<?php echo base_url();?>/_assets/js/jquery-1.10.2.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/vendor.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/app.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
+<script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
 
     <!-- Page-Level Plugin Scripts - Panels and Wells -->
 

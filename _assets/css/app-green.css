@@ -1407,10 +1407,10 @@ label,
 a:not(.btn) {
   -webkit-transition: initial;
           transition: initial;
-  text-decoration: underline;
+  text-decoration: none;
   color: #969696; }
   a:not(.btn):hover {
-    text-decoration: underline;
+    text-decoration: none;
     color: #70b02b; }
     a:not(.btn):hover:before {
       -webkit-transform: scaleX(1);
@@ -2718,6 +2718,7 @@ pre {
     .sidebar-header .brand {
       line-height: 50px;
       font-size: 22px; } }
+
 
 .header .header-block-nav .notifications {
   font-size: 16px; }
