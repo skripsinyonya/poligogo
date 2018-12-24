@@ -10,9 +10,7 @@ if (empty($_SESSION['username'])){
 
 }else{
 
-    //echo "<script>alert('anda sukses login')</script>"; 
-    /*pre($_SESSION);
-    die;*/
+   
 
 
 }
@@ -71,11 +69,14 @@ die;*/
                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <!-- <div class="dropdown-divider"></div> -->
-<<<<<<< HEAD
+
                                     <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="" lass="fa fa-power-off icon"></i> Logout </a>
-=======
+
                                     <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
->>>>>>> 3aa4c60be3bdc0f6a81ea7fb5c576c29f828a66d
+
+
+                                    <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
+
                                 </div>
                             </li>
                         </ul>
@@ -347,9 +348,7 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-<<<<<<< HEAD
-  
-=======
+
     <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
 <script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
 
@@ -361,7 +360,7 @@ die;*/
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo base_url();?>/_assets/js/sb-admin.js"></script>
 
->>>>>>> 3aa4c60be3bdc0f6a81ea7fb5c576c29f828a66d
+
     <!-- Page-Level Demo Scripts - Panels and Wells - Use for reference -->
     <script src="<?php echo base_url();?>/_assets/js/vendor.js"></script>
         <script src="<?php echo base_url();?>/_assets/js/app.js"></script>
