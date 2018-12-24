@@ -44,15 +44,16 @@
 
 	    	$query_cek = mysqli_query($mysqli, "select * from master_pegawai where nip='$nip' and username='$username'");
 	    	$fetch_cek = mysqli_num_rows($query_cek);
+	    	
 
-	    	if($fetch_cek > 0){
+	    	if($fetch_cek < 1){
 
 		    	$query = mysqli_query($mysqli, "insert into master_pegawai values('','$nip', '$nama', '$jabatan', '$jenis', '$tempat', '$tanggal', '$alamat', '$no', '$date', '$username', '$password', '$gambar' )");
 
 		    	if($query == true){
 
 		    		echo '200';
-
+		    		echo "<script>alert('Berhasil Menambahkan Data')</script>";
 		    		header("Location: index.php");
 
 		    	}else{

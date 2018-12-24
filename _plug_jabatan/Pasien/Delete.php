@@ -3,7 +3,7 @@
 
 	$crud = new crud;
 
-	#$id = $_POST['id'];
-	$crud->hapus();
+	$no_rm = $_POST['no_rm'];
+	$crud->hapus($no_rm);
 
 ?>

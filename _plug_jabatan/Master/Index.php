@@ -1,6 +1,5 @@
 <?php
 session_start();
-//require_once "../../_config/config.php";
 require 'Crud.php';
 
 $crud = new Crud;
@@ -72,7 +71,11 @@ die;*/
                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <!-- <div class="dropdown-divider"></div> -->
-                                    <a class="dropdown-item" href="auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
+<<<<<<< HEAD
+                                    <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="" lass="fa fa-power-off icon"></i> Logout </a>
+=======
+                                    <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
+>>>>>>> 3aa4c60be3bdc0f6a81ea7fb5c576c29f828a66d
                                 </div>
                             </li>
                         </ul>
@@ -344,11 +347,11 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-    <script src="<?php echo base_url();?>/_assets/js/jquery-1.10.2.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/vendor.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/app.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<<<<<<< HEAD
+  
+=======
+    <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
+<script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
 
     <!-- Page-Level Plugin Scripts - Panels and Wells -->
 
@@ -358,7 +361,10 @@ die;*/
     <!-- SB Admin Scripts - Include with every page -->
     <script src="<?php echo base_url();?>/_assets/js/sb-admin.js"></script>
 
+>>>>>>> 3aa4c60be3bdc0f6a81ea7fb5c576c29f828a66d
     <!-- Page-Level Demo Scripts - Panels and Wells - Use for reference -->
+    <script src="<?php echo base_url();?>/_assets/js/vendor.js"></script>
+        <script src="<?php echo base_url();?>/_assets/js/app.js"></script>
     <script>
 
     var PreviewImage = function(event){

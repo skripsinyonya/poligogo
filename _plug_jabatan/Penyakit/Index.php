@@ -69,7 +69,7 @@ die;*/
                     </span> </a>
                                 <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
                                     <!-- <div class="dropdown-divider"></div> -->
-                                    <a class="dropdown-item" href="auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
+                                    <a class="dropdown-item" href="<?php echo base_url();?>/auth/Logout.php"> <i class="fa fa-power-off icon"></i> Logout </a>
                                 </div>
                             </li>
                         </ul>
@@ -123,7 +123,7 @@ die;*/
 
                                
                                     <li class="menu-item-has-children dropdown">
-                                        <a href="#">Data Pasien</a>
+                                        <a href="'.base_url('_plug_jabatan/Pasien').'">Data Pasien</a>
                                     </li>
                                     <li>
                                         <a href="'.base_url('_plug_jabatan/Penyakit').'">Data Penyakit</a>
@@ -143,10 +143,10 @@ die;*/
                                     <ul class="nav nav-second-level">';
 
                                         echo '<li class="menu-item-has-children dropdown">
-                                                <a href="#">Pemeriksaan Pasien</a>
+                                                <a href="'.base_url('_plug_jabatan/PerawatanPasien').'">Perawatan Pasien</a>
                                             </li>
                                             <li>
-                                                <a href="#"> Upload Foto Rontgen Gigi</a>
+                                                <a href="'.base_url('_plug_jabatan/UpFotoRontgen').'"> Upload Foto Rontgen Gigi</a>
                                             </li>
 
                                     </ul>';
@@ -160,20 +160,18 @@ die;*/
                                     echo '<li class="menu-item-has-children dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lap. Kunjungan Pasien</a>
 
-                                            <ul class="sub-menu children dropdown-menu">
-                                                <li><a href="page-login.html">Periode</a></li>
-                                                <li><a href="page-register.html">Laporan Tindakan</a></li>
-                                                <li><a href="pages-forget.html">Laporan Penyakit</a></li>
+                                            <ul class="nav nav-third-level dropdown">
+                                                <li><a href="'.base_url('_plug_jabatan/Periode').'">Periode</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapTindakan').'">Laporan Tindakan</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapPenyakit').'">Laporan Penyakit</a></li>
                                             </ul>
                                         </li>
 
                                         <li class="menu-item-has-children dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Laporan RM</a>
-                                            <ul class="sub-menu children dropdown-menu">
-                                                <li><a href="page-login.html">Informed Consent</a></li>
-                                                <li><a href="page-register.html">Tindakan Penolakan</a></li>
-                                                <li><a href="pages-forget.html">Form Perawatan</a></li>
-                                                <li><a href="pages-forget.html">Foto Rontgen Gigi</a></li>
+                                            <ul class="nav nav-third-level">
+                                                <li><a href="'.base_url('_plug_jabatan/UpFotoRontgen').'FormPerawatan">Form Perawatan</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapFotoRontgen').'">Foto Rontgen Gigi</a></li>
                                             </ul>
                                         </li>
 
@@ -193,13 +191,13 @@ die;*/
 
                                
                                     <li class="menu-item-has-children dropdown">
-                                        <a href="#">Data Pasien</a>
+                                        <a href="'.base_url('_plug_jabatan/Pasien').'">Data Pasien</a>
                                     </li>
                                     <li>
                                         <a href="'.base_url('_plug_jabatan/Penyakit').'">Data Penyakit</a>
                                     </li>
                                     <li>
-                                        <a href="#">Data Tindakan</a>
+                                        <a href="'.base_url('_plug_jabatan/Tindakan').'">Data Tindakan</a>
                                     </li>
                             </ul>
                         </li>';
@@ -213,10 +211,10 @@ die;*/
                                     <ul class="nav nav-second-level">';
 
                                         echo '<li class="menu-item-has-children dropdown">
-                                                <a href="#">Perawatan Pasien</a>
+                                                <a href="'.base_url('_plug_jabatan/Perawatan').'">Perawatan Pasien</a>
                                             </li>
                                             <li>
-                                                <a href="#"> Upload Foto Rontgen Gigi</a>
+                                                <a href="'.base_url('_plug_jabatan/UpFotoRontgen').'"> Upload Foto Rontgen Gigi</a>
                                             </li>
 
                                     </ul>';
@@ -244,7 +242,7 @@ die;*/
                                     <ul class="nav nav-second-level">';
 
                                         echo '<li class="menu-item-has-children dropdown">
-                                                <a href="#">Perawatan Pasien</a>
+                                                <a href="'.base_url('_plug_jabatan/Perawatan').'">Perawatan Pasien</a>
                                             </li>
                                     </ul>';
 
@@ -257,11 +255,9 @@ die;*/
 
                             echo '<li class="menu-item-has-children dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Laporan RM</a>
-                                            <ul class="sub-menu children dropdown-menu">
-                                                <li><a href="page-login.html">Informed Consent</a></li>
-                                                <li><a href="page-register.html">Tindakan Penolakan</a></li>
-                                                <li><a href="pages-forget.html">Form Perawatan</a></li>
-                                                <li><a href="pages-forget.html">Foto Rontgen Gigi</a></li>
+                                            <ul class="nav nav-third-level">
+                                                <li><a href="'.base_url('_plug_jabatan/FormPerawatan').'">Form Perawatan</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapFotoRontgen').'">Foto Rontgen Gigi</a></li>
                                             </ul>
                                         </li>
 
@@ -280,9 +276,9 @@ die;*/
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lap. Kunjungan Pasien</a>
 
                                             <ul class="sub-menu children dropdown-menu">
-                                                <li><a href="page-login.html">Periode</a></li>
-                                                <li><a href="page-register.html">Laporan Tindakan</a></li>
-                                                <li><a href="pages-forget.html">Laporan Penyakit</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/Periode').'">Periode</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapTindakan').'">Laporan Tindakan</a></li>
+                                                <li><a href="'.base_url('_plug_jabatan/LapPenyakit').'">Laporan Penyakit</a></li>
                                             </ul>
                                         </li>
                                     </ul>';
@@ -341,11 +337,9 @@ die;*/
     <!-- /#wrapper -->
 
     <!-- Core Scripts - Include with every page -->
-   <script src="<?php echo base_url();?>/_assets/js/jquery-1.10.2.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/vendor.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/app.js"></script>
-    <script src="<?php echo base_url();?>/_assets/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+   <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
+<script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
+
 
     <!-- Page-Level Plugin Scripts - Panels and Wells -->
 

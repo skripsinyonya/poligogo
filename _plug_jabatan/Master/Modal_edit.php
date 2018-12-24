@@ -83,6 +83,14 @@ $data = $crud->modal_edit($id);
                 <input type="text" name="no" min="11" max="13" required="" required="" class="form-control" id="modal-no" value="<?php echo $data['no_telepon'];?>">
             </div>
         </div>
+        <div class="form-group">
+            <div class='col-md-3'>
+                <label for="nip">Foto</label>
+            </div>
+            <div class="col-md-6">
+                <img src="<?php echo base_url('_images/Upload/'.$data['gambar']);?>" class="img img-responsive" style="height: 300px">
+            </div>
+        </div>
         <!-- <div class="form-group">
             <div class="col-md-3">
             </div>

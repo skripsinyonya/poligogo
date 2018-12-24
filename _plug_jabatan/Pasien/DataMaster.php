@@ -2,6 +2,25 @@
 require 'Crud.php';
 $crud = new crud;
 ?>
+<div class="modal fade" id="Modal-ubah" tabindex="-1" role="dialog" aria-labelledby="largemodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+            </div>
+            <div class="modal-body fetch-data">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary" id='btn-inpedit'>Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <link href="<?php echo base_url();?>/_assets/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
@@ -16,6 +35,7 @@ $crud = new crud;
                                                     <th>Nama KK</th>
                                                     <th>No KK</th>
                                                     <th>Alergi</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,10 +88,10 @@ $crud = new crud;
                                                                 <td>".$value_data['no_kk']."</td>
                                                                 <td>".$value_data['alergi']."</td>
                                                                 <td>
-                                                                    <a href='javascript:void(0);' data-toggle='modal' data-target='#exampleModalLong' id='ubah".$key_data."' data-no_rm='".$value_data['no_rm']."' data-nama_pasien='".$value_data['nama_pasien']."' data-jk='".$value_data['jenis_kelamin']."' data-tempat='".$value_data['tempat_lahir']."' data-tanggal='".$value_data['tanggal_lahir']."' data-alamat='".$value_data['alamat']."' data-nik='".$value_data['nik']."' data-nama_kk='".$value_data['nama_kk']."' data-no_kk='".$value_data['no_kk']."' data-alergi='".$value_data['alergi']."'title='Ubah data'>
+                                                                    <a href='javascript:void(0);' data-toggle='modal' data-target='#Modal-ubah' id='ubah".$key_data."' data-no_rm='".$value_data['no_rm']."' data-nama_pasien='".$value_data['nama_pasien']."' data-jk='".$value_data['jenis_kelamin']."' data-tempat='".$value_data['tempat_lahir']."' data-tanggal='".$value_data['tanggal_lahir']."' data-alamat='".$value_data['alamat']."' data-nik='".$value_data['nik']."' data-nama_kk='".$value_data['nama_kk']."' data-no_kk='".$value_data['no_kk']."' data-alergi='".$value_data['alergi']."'title='Ubah data'>
                                                                     <span class='glyphicon glyphicon-pencil'></span>
                                                                     </a>
-                                                                    | 
+                                                                    
                                                                     <a href='javascript:void(0);' id='hapus".$key_data."' data-no_rm='".$value_data['no_rm']."'><span class='glyphicon glyphicon-trash'></span></a>&nbsp;
                                                                 </td>
                                                         </tr>";
@@ -85,12 +105,13 @@ $crud = new crud;
     $(document).ready(function(){
 
         //edit
-        $("#btn-modaledit").click(function() {
+        $("#btn-inpedit").click(function() {
             var no_rm= $('#modal-no_rm').val();
+            var nama_kk = $("#modal-nama_kk").val();
             var nama_pasien = $('#modal-nama_pasien').val();
             var jk = $('#modal-jk1').is(':checked') ? $('#modal-jk1').val() : $('#modal-jk2').val();
             var tempat_lahir = $('#modal-tempat_lahir').val();
-            var tanggal_lahir = $('#modal-tgl_lahir').val();
+            var tanggal_lahir = $('#modal-tanggal_lahir').val();
             var alamat = $('#modal-alamat').val();
             var nik = $('#modal-nik').val();
             var nama_kk = $('#modal-nama_kk').val();
@@ -102,7 +123,8 @@ $crud = new crud;
                 data: {no_rm : no_rm, nama_pasien : nama_pasien, jenis_kelamin : jk, tempat_lahir : tempat_lahir, tanggal_lahir : tanggal_lahir, alamat : alamat, nik : nik, nama_kk : nama_kk, no_kk : no_kk, alergi : alergi},
                 success: function(data){
                     alert(data);
-                    $("#datatables-master").load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
+                    //$("#datatables-master").load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
+                    window.location = 'Index.php';
                 }
             })         
             
