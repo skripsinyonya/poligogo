@@ -1,13 +1,13 @@
 <?php
 	include 'Crud.php';
-	$id_penyakit = $_POST['id_penyakit'];
+	$id_tindakan = $_POST['id_tindakan'];
 	$data = array(
-		'id_penyakit' => $_POST['id_penyakit'],
-		'nama_penyakit' => $_POST['nama_penyakit'],
-		'icd_x' => $_POST['icd_x'],
+		'id_tindakan' => $_POST['id_tindakan'],
+		'nama_tindakan' => $_POST['nama_tindakan'],
+		'icd_cm' => $_POST['icd_cm'],
 	);
 
 	$crud = new Crud();
-	$crud->edit($id, $data);
+	$crud->edit($id_tindakan, $data);
 
 ?>
