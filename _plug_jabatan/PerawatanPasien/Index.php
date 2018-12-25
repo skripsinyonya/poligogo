@@ -298,7 +298,7 @@ die;*/
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="font-size: large;">
-                            Data Pegawai
+                            Data Perawat
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -360,8 +360,8 @@ die;*/
             Output.src= URL.createObjectURL(event.target.files[0]);
         };
 
-    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Master/DataMaster.php');?>');
-    $('#tambah').load('<?php echo base_url('_plug_jabatan/Master/TambahMaster.php');?>');
+    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/PerawatanPasien/DataMaster.php');?>');
+    $('#tambah').load('<?php echo base_url('_plug_jabatan/PerawatanPasien/TambahMaster.php');?>');
     </script>
 
 </body>

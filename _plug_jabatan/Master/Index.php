@@ -36,6 +36,16 @@ die;*/
         <link rel="stylesheet" href="<?php echo base_url();?>/_assets/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url();?>/_assets/css/app-green.css">
         <link href="<?php echo base_url();?>/_assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+        <link href="<?php echo base_url();?>/_assets/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>/_assets/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+
+        <script src="<?php echo base_url(''); ?>/_assets/datatables/js/dataTables.bootstrap.js"></script>
+
+        <script src="<?php echo base_url(''); ?>/_assets/datatables/js/jquery.dataTables.min.js"></script>
+
+
+
         <!-- Theme initialization -->
     </head>
 
@@ -340,6 +350,8 @@ die;*/
 
     <script src="<?php echo base_url(''); ?>/_assets/js/vendor.js"></script>
 <script src="<?php echo base_url(''); ?>/_assets/js/app.js"></script>
+
+<script src="<?php echo base_url(''); ?>/_assets/js/jquery-1.10.2.js"></script>
 
     <!-- Page-Level Plugin Scripts - Panels and Wells -->
 

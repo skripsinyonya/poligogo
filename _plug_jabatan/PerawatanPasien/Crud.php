@@ -3,7 +3,7 @@
 	class Crud
 	{
 
-		var $table = 'master_pegawai';
+		var $table = 'perawatan';
 
 	    public function __construct()
 	    {
@@ -14,8 +14,11 @@
 
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
 
-	    	$query = mysqli_query($mysqli, "select * from $this->table");
-	    	while ($ress = mysqli_fetch_assoc($query)) {
+	    	$query = mysqli_query($mysqli, "SELECT * from perawatan_pasien");
+
+	    	$result = array();
+	    	#pre($query);
+	    	while ($ress = mysqli_fetch_assoc($query)){
 	    	    	
 	    	    	$result[] = $ress;
 
@@ -24,45 +27,62 @@
 
 	    }
 
+	    public function get_nip($username)
+	    {
+	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
+
+	    	$query = mysqli_query($mysqli, "select * from master_pegawai where username = '$username' ");
+
+	    	$result = mysqli_fetch_assoc($query);
+
+	    	return $result;
+	    }
+
+	    public function show_tindakan($id)
+	    {
+	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
+
+	    	$query = mysqli_query($mysqli, "select * from pasien_tindakan where id_tindakan = $id");
+	    	$result = mysqli_fetch_assoc($query);
+
+	    	return $result;
+	    }
+
 	    public function tambah($data)
 	    {
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
 	    	//$date = date('Y-m-d');
+	    	$now = mysqli_query($mysqli, "select now() as now");
+	    	$now = mysqli_fetch_assoc($now);
+	    	$now = $now['now'];
 
-	    	$nip = $data['nip'];
-	    	$nama = $data['nama'];
-	    	$jabatan = $data['jabatan'];
-	    	$jenis = $data['jenis_kelamin'];
-	    	$tempat = $data['tempat_tinggal'];
-	    	$tanggal = $data['tanggal_lahir'];
-	    	$alamat = $data['alamat'];
-	    	$no = $data['no_telepon'];
-	    	$date = $data['tanggal_daftar'];
-	    	$username = $data['username'];
-	    	$password = $data['password'];
-	    	$gambar = $data['gambar'];
+	    	$nip_perawat = $data['nip_perawat'];
+	    	$id_tindakan = $data['id_tindakan'];
+	    	$tanggal_masuk = $now;
+	    	$tanggal_dirawat = $data['tanggal_dirawat'];
+	    	/*pre(array($nip_perawat, $id_tindakan, $tanggal_masuk, $tanggal_dirawat));
+	    	die;*/
 
-	    	$query_cek = mysqli_query($mysqli, "select * from master_pegawai where nip='$nip' and username='$username'");
+	    	$query_cek = mysqli_query($mysqli, "select * from perawatan where id_tindakan='$id_tindakan'");
 	    	$fetch_cek = mysqli_num_rows($query_cek);
 
-	    	if($fetch_cek > 0){
+	    	if($fetch_cek < 1){
 
-		    	$query = mysqli_query($mysqli, "insert into master_pegawai values('','$nip', '$nama', '$jabatan', '$jenis', '$tempat', '$tanggal', '$alamat', '$no', '$date', '$username', '$password', '$gambar' )");
+		    	$query = mysqli_query($mysqli, "insert into perawatan values('','$nip_perawat', '$id_tindakan', '$tanggal_masuk', '$tanggal_dirawat')");
 
 		    	if($query == true){
 
-		    		echo '200';
-
-		    		header("Location: index.php");
+		    		//echo '200';
+		    		echo "<script>alert('BERHASIL INPUT DATA');window.location='Index.php'</script>";
 
 		    	}else{
-		    		echo '404';
-		    		header("Location: index.php");
+					//echo '404';
+		    		echo "<script>alert('GALAT !');window.location='Index.php'</script>";
 		    		
 		    	}
 	    	}else{
 
-	    		echo "<script>alert('Username / NIP sudah tersedia');window.location='Index.php'</script>";
+	    		echo "<script>alert('NO TINDAKAN SUDAH DIMASUKKAN !');window.location='Index.php'</script>";
 	    		//header("Location: index.php");
 
 	    	}
@@ -89,12 +109,12 @@
 
 	    }
 
-	    public function hapus()
+	    public function hapus($id)
 	    {		
-	    	$id = $_POST['id'];
+	    	//$id = $_POST['id_perawatan'];
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
 
-	    	$query = mysqli_query($mysqli, "delete from $this->table where id = '$id'");
+	    	$query = mysqli_query($mysqli, "delete from $this->table where id_perawatan = '$id'");
 
 	    	if(isset($query)){
 
@@ -118,7 +138,7 @@
 	    public function edit($id, $data)
 	    {
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');	    	
-	    	$query = mysqli_query($mysqli, "update $this->table set nip = '".$data['nip']."', nama = '".$data['nama']."', jabatan='".$data['jabatan']."', jenis_kelamin='".$data['jenis_kelamin']."', tempat_lahir ='".$data['tempat_lahir']."', tanggal_lahir ='".$data['tanggal_lahir']."', alamat='".$data['alamat']."', no_telepon='".$data['no_telepon']."' where id='$id'");
+	    	$query = mysqli_query($mysqli, "update $this->table set id_tindakan = '".$data['id_tindakan']."', tanggal_dirawat = '".$data['tanggal_dirawat']."' where id_perawatan='$id'");
 
 	    	if($query == true){
 
@@ -134,7 +154,7 @@
 
 	    public function modal_edit($id){
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
-	    	$query = mysqli_query($mysqli, "select * from $this->table where id = '$id' ");
+	    	$query = mysqli_query($mysqli, "select * from $this->table where id_perawatan = '$id' ");
 	    	$result = mysqli_fetch_assoc($query);
 	    	return $result;
 	    }

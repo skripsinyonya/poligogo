@@ -1,5 +1,9 @@
 <?php
+
+session_start();
 	require '../../_config/config.php';
+$date = date('Y-m-d');
+
 ?>
 <div class="panel-body">
 	<form class="form-horizontal" method="POST" id="frm-tambah" enctype="multipart/form-data" action="Tambah.php">
@@ -8,91 +12,33 @@
 				<label for="nip">NIP</label>
 			</div>
 			<div class="col-md-6">
-				<input type="text" name="nip" class="form-control" id="frm-nip" required="">
+				<input type="text" name="nip" class="form-control" id="frm-nip" readonly="" value="<?php echo $_SESSION['username'];?>">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class='col-md-3'>
-				<label for="nip">Nama</label>
+				<label for="nip">No Tindakan</label>
 			</div>
 			<div class="col-md-6">
-				<input type="text" name="nama" class="form-control" id="frm-nama" required="">
+				<input type="text" name="id_tindakan" required="" class="form-control" id="frm-id_tindakan">
 			</div>
 		</div>
+		<div id="show-tindakan"></div>
 		<div class="form-group">
 			<div class='col-md-3'>
-				<label for="nip">Jabatan</label>
+				<label for="nip">Tanggal Di Rawat</label>
 			</div>
 			<div class="col-md-6">
-				<input type="text" name="jabatan" class="form-control" id="frm-jabatan" required="">
+				<input type="date" name="tanggal" min="<?php echo $date;?>" class="form-control" required="">
+				<select name="waktu" class="form-control">
+					<?php
+						for ($i = 1; $i < 25 ; $i++) {
+							echo "<option value='$i:00:00'> $i:00:00 </option>";
+						}
+					?>
+				</select>
 			</div>
 		</div>
-		<div class="form-group">
-			<div class='col-md-3'>
-				<label for="nip">Jenis Kelamin</label>
-			</div>
-			<div class="col-md-6">
-				<input type="radio" name="jk[]" value="Laki - laki" id="frm-jk1" checked> Laki - Laki
-				<input type="radio" name="jk[]" value="Perempuan" id="frm-jk2"> Perempuan
-			</div>
-		 </div>
-		<div class="form-group">
-			<div class='col-md-3'>
-				<label for="nip">Tempat Lahir</label>
-			</div>
-			<div class="col-md-6">
-				<input type="text" name="tempat" class="form-control" id="frm-tempatlahir" required="">
-			</div>
-		</div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Tanggal Lahir</label>
-            </div>
-            <div class="col-md-6">
-                <input type="date" name="tanggal" max="<?php echo $today['now'];?>" required class="form-control" id="frm-tgl_lahir">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Alamat</label>
-            </div>
-            <div class="col-md-6">
-                <textarea name="alamat" class="form-control" rows="5" cols="5" required="" id="frm-alamat"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Telepon</label>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="no" min="11" max="13" required="" required="" class="form-control" id="frm-no">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Username</label>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="username" class="form-control" id="frm-username" required="">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Password</label>
-            </div>
-            <div class="col-md-6">
-                <input type="text" name="password" class="form-control" id="frm-password" required="">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class='col-md-3'>
-                <label for="nip">Gambar</label>
-            </div>
-            <div class="col-md-6">
-                <img src="<?php echo base_url('_assets/blank.png');?>" alt='gambar' style="width: auto; height: 250px;" id="prevGambar">
-                <input type="file" name="gambar" id="frm-gambar" onchange="PreviewImage(event);" required="">
-            </div>
-        </div>
         <div class="form-group">
             <div class="col-md-3">
             </div>
@@ -104,6 +50,28 @@
 </div>
 
 <script type="text/javascript">
+
+	$(document).ready(function() {
+		$("#frm-id_tindakan").keyup(function() {
+			var id_tindakan = $("#frm-id_tindakan").val();
+
+			if(id_tindakan == ''){
+
+				$("#show-tindakan").html('');
+
+			}else{
+
+				$.ajax({
+					url: '<?php echo base_url('_plug_jabatan/PerawatanPasien/ShowTindakan.php');?>',
+					type: 'POST',
+					data: {id_tindakan: id_tindakan},
+					success:function(data){
+						$("#show-tindakan").html(data);
+					}
+				})			
+			}
+		});
+	});
 	
 	/*$(document).ready(function() {
 	        

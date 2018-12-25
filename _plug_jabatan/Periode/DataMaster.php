@@ -6,11 +6,11 @@ $crud = new crud;
  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                             <thead>
                                                 <tr>
-                                                    <th>No</th>
-                                                    <th>NIP</th>
-                                                    <th>Nama</th>
-                                                    <th>Jabatan</th>
-                                                    <th>Jenis Kelamain</th>
+                                                    <th>ID Kunjungan</th>
+                                                    <th>NO RM</th>
+                                                    <th>Nama Pasien</th>
+                                                    <th>Diagnosis</th>
+                                                    <th>Tindakan</th>
                                                     <th>Detail</th>
                                                     <th>Tanggal Terdaftar</th>
                                                     <th>Aksi</th>
