@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Des 2018 pada 12.37
+-- Generation Time: 25 Des 2018 pada 05.27
 -- Versi Server: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_poligigi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kunjungan`
+--
+
+CREATE TABLE IF NOT EXISTS `kunjungan` (
+  `id_kunjungan` int(10) NOT NULL,
+  `no_rm` varchar(6) NOT NULL,
+  `nama_pasien` varchar(50) NOT NULL,
+  `diagnosis` varchar(25) NOT NULL,
+  `tindakan` varchar(30) NOT NULL,
+  `tanggal_kunjungan` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -60,10 +75,22 @@ CREATE TABLE IF NOT EXISTS `master_pegawai` (
 
 INSERT INTO `master_pegawai` (`id`, `nip`, `nama`, `jabatan`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `no_telepon`, `tgl_terdaftar`, `username`, `password`, `gambar`) VALUES
 (1, '12121212', 'Bagas', 'Master', 'Laki - laki', 'Bondowoso', '1996-08-16', 'sukosari', '0876543219', '2018-12-02', 'master', 'eb0a191797624dd3a48fa681d3061212', 'matamu.jpeg'),
-(2, '13131313', 'enggar', 'Dokter', 'Laki - laki', 'nganjuck', '2018-12-25', 'asafaf', '3114141412', '2018-12-26', 'dokter', 'd22af4180eee4bd95072eb90f94930e5', 'dokter.jpeg'),
 (3, '0', 'Abdul', 'Master', 'Laki - laki', 'Kediri', '2018-01-01', '1234', '123', '2018-12-09', '13123', '4297f44b13955235245b2497399d7a93', '1544351445mas ptih hitam.jpg'),
 (4, '12333123', 'sukoco', 'Petugas RM', 'laki - laki', 'subang', '2018-12-05', 'dfsdf', '1231241', '2018-12-21', 'petugasrm', '2bf47e5ccccc5d2214c42f70d325c23a', 'petugasrm.jpg'),
 (5, '5555555', 'sda', 'Perawat', 'perempuan', 'asdad', '2018-12-20', 'asda', '12314141', '2018-12-29', 'perawat', '5d6a514ee02a5fc910dee69cc07017cc', 'perawat.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `odontogram`
+--
+
+CREATE TABLE IF NOT EXISTS `odontogram` (
+  `kode_odontogram` int(10) NOT NULL,
+  `no_gigi` int(10) NOT NULL,
+  `simbol_gigi` text NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -102,7 +129,9 @@ INSERT INTO `pasien` (`no_rm`, `nama_pasien`, `jenis_kelamin`, `tempat_lahir`, `
 -- Stand-in structure for view `pasien_tindakan`
 --
 CREATE TABLE IF NOT EXISTS `pasien_tindakan` (
-`nama_tindakan` varchar(30)
+`status_tindakan` varchar(10)
+,`id_tindakan` int(10)
+,`nama_tindakan` varchar(30)
 ,`icd_cm` varchar(10)
 ,`foto_rontgen` varchar(50)
 ,`no_rm` varchar(6)
@@ -140,6 +169,55 @@ INSERT INTO `penyakit` (`id_penyakit`, `nama_penyakit`, `icd_x`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `perawatan`
+--
+
+CREATE TABLE IF NOT EXISTS `perawatan` (
+  `id_perawatan` int(11) NOT NULL,
+  `nip_perawat` varchar(20) NOT NULL,
+  `id_tindakan` int(10) NOT NULL,
+  `tanggal_masuk` datetime NOT NULL,
+  `tanggal_dirawat` datetime NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `perawatan`
+--
+
+INSERT INTO `perawatan` (`id_perawatan`, `nip_perawat`, `id_tindakan`, `tanggal_masuk`, `tanggal_dirawat`) VALUES
+(2, '12121212', 2, '2018-12-25 10:06:58', '2018-12-29 12:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `perawatan_pasien`
+--
+CREATE TABLE IF NOT EXISTS `perawatan_pasien` (
+`id_perawatan` int(11)
+,`nip` varchar(17)
+,`nama_pegawai` varchar(50)
+,`id_tindakan` int(10)
+,`nama_tindakan` varchar(30)
+,`status` varchar(10)
+,`foto_rontgen` varchar(50)
+,`no_rm` varchar(6)
+,`nama_pasien` varchar(50)
+,`jenis_kelamin` varchar(10)
+,`tempat_lahir` varchar(50)
+,`tanggal_lahir` date
+,`alamat` varchar(50)
+,`nik` varchar(50)
+,`nama_kk` varchar(20)
+,`no_kk` varchar(15)
+,`alergi` varchar(20)
+,`tanggal_masuk` datetime
+,`tanggal_dirawat` datetime
+,`nama` varchar(50)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `tindakan`
 --
 
@@ -169,11 +247,27 @@ INSERT INTO `tindakan` (`id_tindakan`, `nama_tindakan`, `icd_cm`, `no_rm`, `foto
 --
 DROP TABLE IF EXISTS `pasien_tindakan`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pasien_tindakan` AS select `tindakan`.`nama_tindakan` AS `nama_tindakan`,`tindakan`.`icd_cm` AS `icd_cm`,`tindakan`.`foto_rontgen` AS `foto_rontgen`,`tindakan`.`no_rm` AS `no_rm`,`pasien`.`nama_pasien` AS `nama_pasien`,`pasien`.`no_kk` AS `no_kk`,`pasien`.`jenis_kelamin` AS `jenis_kelamin`,`pasien`.`tanggal_lahir` AS `tanggal_lahir`,`pasien`.`tempat_lahir` AS `tempat_lahir` from (`tindakan` join `pasien`) where (`tindakan`.`no_rm` = `pasien`.`no_rm`);
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `pasien_tindakan` AS select `tindakan`.`status` AS `status_tindakan`,`tindakan`.`id_tindakan` AS `id_tindakan`,`tindakan`.`nama_tindakan` AS `nama_tindakan`,`tindakan`.`icd_cm` AS `icd_cm`,`tindakan`.`foto_rontgen` AS `foto_rontgen`,`tindakan`.`no_rm` AS `no_rm`,`pasien`.`nama_pasien` AS `nama_pasien`,`pasien`.`no_kk` AS `no_kk`,`pasien`.`jenis_kelamin` AS `jenis_kelamin`,`pasien`.`tanggal_lahir` AS `tanggal_lahir`,`pasien`.`tempat_lahir` AS `tempat_lahir` from (`tindakan` join `pasien`) where (`tindakan`.`no_rm` = `pasien`.`no_rm`);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `perawatan_pasien`
+--
+DROP TABLE IF EXISTS `perawatan_pasien`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `perawatan_pasien` AS select `perawatan`.`id_perawatan` AS `id_perawatan`,`master_pegawai`.`nip` AS `nip`,`master_pegawai`.`nama` AS `nama_pegawai`,`tindakan`.`id_tindakan` AS `id_tindakan`,`tindakan`.`nama_tindakan` AS `nama_tindakan`,`tindakan`.`status` AS `status`,`tindakan`.`foto_rontgen` AS `foto_rontgen`,`pasien`.`no_rm` AS `no_rm`,`pasien`.`nama_pasien` AS `nama_pasien`,`pasien`.`jenis_kelamin` AS `jenis_kelamin`,`pasien`.`tempat_lahir` AS `tempat_lahir`,`pasien`.`tanggal_lahir` AS `tanggal_lahir`,`pasien`.`alamat` AS `alamat`,`pasien`.`nik` AS `nik`,`pasien`.`nama_kk` AS `nama_kk`,`pasien`.`no_kk` AS `no_kk`,`pasien`.`alergi` AS `alergi`,`perawatan`.`tanggal_masuk` AS `tanggal_masuk`,`perawatan`.`tanggal_dirawat` AS `tanggal_dirawat`,`master_pegawai`.`nama` AS `nama` from (((`perawatan` join `tindakan`) join `master_pegawai`) join `pasien`) where ((`tindakan`.`id_tindakan` = `perawatan`.`id_tindakan`) and (`master_pegawai`.`nip` = `perawatan`.`nip_perawat`) and (`pasien`.`no_rm` = `tindakan`.`no_rm`));
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `kunjungan`
+--
+ALTER TABLE `kunjungan`
+  ADD PRIMARY KEY (`id_kunjungan`),
+  ADD UNIQUE KEY `no_rm` (`no_rm`);
 
 --
 -- Indexes for table `master_jabatan`
@@ -188,6 +282,12 @@ ALTER TABLE `master_pegawai`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `odontogram`
+--
+ALTER TABLE `odontogram`
+  ADD PRIMARY KEY (`kode_odontogram`);
+
+--
 -- Indexes for table `pasien`
 --
 ALTER TABLE `pasien`
@@ -198,6 +298,13 @@ ALTER TABLE `pasien`
 --
 ALTER TABLE `penyakit`
   ADD PRIMARY KEY (`id_penyakit`);
+
+--
+-- Indexes for table `perawatan`
+--
+ALTER TABLE `perawatan`
+  ADD PRIMARY KEY (`id_perawatan`),
+  ADD KEY `id_tindakan` (`id_tindakan`);
 
 --
 -- Indexes for table `tindakan`
@@ -226,6 +333,11 @@ ALTER TABLE `master_pegawai`
 ALTER TABLE `penyakit`
   MODIFY `id_penyakit` int(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
+-- AUTO_INCREMENT for table `perawatan`
+--
+ALTER TABLE `perawatan`
+  MODIFY `id_perawatan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `tindakan`
 --
 ALTER TABLE `tindakan`
@@ -233,6 +345,18 @@ ALTER TABLE `tindakan`
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
+
+--
+-- Ketidakleluasaan untuk tabel `kunjungan`
+--
+ALTER TABLE `kunjungan`
+  ADD CONSTRAINT `kunjungan_ibfk_1` FOREIGN KEY (`no_rm`) REFERENCES `pasien` (`no_rm`);
+
+--
+-- Ketidakleluasaan untuk tabel `perawatan`
+--
+ALTER TABLE `perawatan`
+  ADD CONSTRAINT `perawatan_ibfk_1` FOREIGN KEY (`id_tindakan`) REFERENCES `tindakan` (`id_tindakan`);
 
 --
 -- Ketidakleluasaan untuk tabel `tindakan`
