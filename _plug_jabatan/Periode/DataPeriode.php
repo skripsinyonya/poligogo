@@ -12,7 +12,7 @@ $crud = new crud;
                                                     <th>Diagnosis</th>
                                                     <th>Tindakan</th>
                                                     <th>Detail</th>
-                                                    <th>Tanggal Terdaftar</th>
+                                                    <th>Tanggal Kunjungan</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -56,20 +56,19 @@ $crud = new crud;
                                                         $key_data++;
                                                         echo "<tr>
                                                                 <td>$key_data</td>
-                                                                <td>".$value_data['nip']."</td>
-                                                                <td>".$value_data['nama']."</td>
-                                                                <td>".$value_data['jabatan']."</td>
-                                                                <td>".$value_data['jenis_kelamin']."</td>
+                                                                <td>".$value_data['no_rm']."</td>
+                                                                <td>".$value_data['nama_pasien']."</td>
+                                                                <td>".$value_data['diagnosis']."</td>
+                                                                <td>".$value_data['tindakan']."</td>
                                                                 <td> Tempat, Tanggal lahir: ".$value_data['tempat_lahir'].", ".$tanggal[2]."-".$bulan."-".$tanggal[0]."<br>
-                                                                Alamat : ".$value_data['alamat']."<br>
-                                                                Telpon : ".$value_data['no_telepon']."<br></td>
-                                                                <td>".$value_data['tgl_terdaftar']."</td>
+                                                                Alamat : ".$value_data['alamat']."<br></td>
+                                                                <td>".$value_data['tanggal_kunjungan']."</td>
                                                                 <td>
-                                                                    <a href='javascript:void(0);' data-toggle='modal' data-target='#exampleModalLong' id='ubah".$key_data."' data-id='".$value_data['id']."' data-nip='".$value_data['nip']."' data-nama='".$value_data['nama']."' data-jabatan='".$value_data['jabatan']."' data-jk='".$value_data['jenis_kelamin']."' data-tempat='".$value_data['tempat_lahir']."' data-tanggal='".$value_data['tanggal_lahir']."' data-alamat='".$value_data['alamat']."' data-no='".$value_data['no_telepon']."' title='Ubah data'>
+                                                                    <a href='javascript:void(0);' data-toggle='modal' data-target='#exampleModalLong' id='ubah".$key_data."' data-id='".$value_data['id_kunjungan']."' data-norm='".$value_data['no_rm']."' data-nama='".$value_data['nama_pasien']."' title='Ubah data'>
                                                                     <span class='glyphicon glyphicon-pencil'></span>
                                                                     </a>
                                                                     | 
-                                                                    <a href='javascript:void(0);' id='hapus".$key_data."' data-id='".$value_data['id']."'><span class='glyphicon glyphicon-trash'></span></a>&nbsp;
+                                                                    <a href='javascript:void(0);' id='hapus".$key_data."' data-id='".$value_data['id_kunjungan']."'><span class='glyphicon glyphicon-trash'></span></a>&nbsp;
                                                                 </td>
                                                         </tr>";
                                                     }

@@ -318,8 +318,11 @@ die;*/
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
                                     <h4>Data Tab</h4>
+                                    <div class="col-md-3">
+                                        <input type="search" name="" class="form-control" id="cari-pasien" placeholder="Cari...">
+                                        <br>
+                                    </div>
                                    <div class="table-responsive" id="datatables-master">
-                                        
                                     </div>
 
                                 </div>
@@ -359,8 +362,36 @@ die;*/
             Output.src= URL.createObjectURL(event.target.files[0]);
         };
 
-    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
     $('#tambah').load('<?php echo base_url('_plug_jabatan/Pasien/TambahMaster.php');?>');
+    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
+
+    $(document).ready(function() {
+        $("#cari-pasien").keyup(function() {
+            var cari = $("#cari-pasien").val();
+
+            if(cari == null){
+
+                $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
+
+            }else{
+
+                //console.log(cari);
+                $.ajax({
+                    url: 'DataMaster.php',
+                    type: 'POST',
+                    data: {cari : cari},
+                    success:function(data){
+                        //$('#datatables-master').load('<?php echo base_url('_plug_jabatan/Pasien/DataMaster.php');?>');
+                        $("#datatables-master").html(data);
+                    }
+                })
+
+            }
+            
+            
+        });
+    });
+
     </script>
 
 </body>

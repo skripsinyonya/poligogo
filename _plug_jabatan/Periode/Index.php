@@ -95,16 +95,16 @@ die;*/
                             <ul class="nav metismenu" id="sidebar-menu">
 
                                 <?php
-                        if($_SESSION['jabatan'] == 'Master'){
+                        if($_SESSION['jabatan'] == 'Periode'){
                                 echo '<li>
-                            <a href="#"><i class="fa fa-users"></i> Master Jabatan<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-users"></i> Periode Jabatan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
 
 
                         
 
                                 <li class="menu-item-has-children dropdown">
-                                    <a href="'.base_url('_plug_jabatan/Master').'"> Kelola Pegawai</a>
+                                    <a href="'.base_url('_plug_jabatan/Periode').'"> Kelola Pegawai</a>
                                 </li>';
 
                             echo '</ul>';
@@ -298,7 +298,7 @@ die;*/
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" style="font-size: large;">
-                            Data Pegawai
+                            Data Kujungan Pasien
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -317,8 +317,7 @@ die;*/
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="home">
-                                    <h4>Data Tab</h4>
-                                   <div class="table-responsive" id="datatables-master">
+                                   <div class="table-responsive" id="datatables-Periode">
                                         
                                     </div>
 
@@ -359,8 +358,8 @@ die;*/
             Output.src= URL.createObjectURL(event.target.files[0]);
         };
 
-    $('#datatables-master').load('<?php echo base_url('_plug_jabatan/Master/DataMaster.php');?>');
-    $('#tambah').load('<?php echo base_url('_plug_jabatan/Master/TambahMaster.php');?>');
+    $('#datatables-Periode').load('<?php echo base_url('_plug_jabatan/Periode/DataPeriode.php');?>');
+    $('#tambah').load('<?php echo base_url('_plug_jabatan/Periode/TambahPeriode.php');?>');
     </script>
 
 </body>

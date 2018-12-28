@@ -172,6 +172,27 @@
 	    	return $result;
 	    }
 
+	    public function cari($cari)
+	    {
+	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
+	    	$query = mysqli_query($mysqli, "SELECT * FROM `pasien` WHERE (nik like '%$cari%' OR no_rm LIKE '%$cari%' OR nama_pasien like '%$cari%')");
+
+	    	$result = array();
+	    	while ($ress = mysqli_fetch_assoc($query)) {
+	    	    	
+	    	    	$result[] = $ress;
+
+	    	}
+
+	    	$count = count($result);
+
+	    	$result = $count > 0 ? $result : null;
+
+	    	return $result;
+
+
+	    }
+
 	    function pre($var){
 	    	echo '<pre>';
 	    	print_r($var);

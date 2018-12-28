@@ -1,6 +1,19 @@
 <?php
 require 'Crud.php';
 $crud = new crud;
+
+$cari = !empty($_POST['cari']) ? $_POST['cari'] : null;
+
+ 
+
+$data = !empty($cari) ? $crud->cari($cari) : $crud->get_data();
+
+//$data = !empty($data) ? $data : 'TIdak Ditemukan';
+
+/*var_dump (array($cari, $data));
+die;*/
+
+
 ?>
 <div class="modal fade" id="Modal-ubah" tabindex="-1" role="dialog" aria-labelledby="largemodalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -42,8 +55,9 @@ $crud = new crud;
                                                 <?php
                                                 /*$crud->pre($crud->get_data());
                                                 die;*/
-
-                                                    foreach ($crud->get_data() as $key_data => $value_data) {
+                                                if(!empty($data)){
+                                                    
+                                                    foreach ($data as $key_data => $value_data) {
                                                         $tanggal = explode('-', $value_data['tanggal_lahir']);
                                                         $bulan = $tanggal[1];
 
@@ -96,7 +110,12 @@ $crud = new crud;
                                                                 </td>
                                                         </tr>";
                                                     }
+
+                                                }else{
+                                                    "Tidak ada data";
+                                                }    
                                                 ?>
+                                                
                                             </tbody>
                                         </table>
                                         <script src="<?php echo base_url();?>/_assets/js/plugins/dataTables/jquery.dataTables.js"></script>
