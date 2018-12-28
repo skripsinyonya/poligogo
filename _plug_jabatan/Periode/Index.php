@@ -95,7 +95,7 @@ die;*/
                             <ul class="nav metismenu" id="sidebar-menu">
 
                                 <?php
-                        if($_SESSION['jabatan'] == 'Periode'){
+                        if($_SESSION['jabatan'] == 'Master'){
                                 echo '<li>
                             <a href="#"><i class="fa fa-users"></i> Periode Jabatan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

@@ -50,9 +50,8 @@
 
 	    }
 
-	    public function hapus()
+	    public function hapus($id_kunjungan)
 	    {		
-	    	$id_kunjungan = $_POST['id_kunjungan'];
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
 
 	    	$query = mysqli_query($mysqli, "delete from $this->table where id_kunjungan = '$id_kunjungan'");
@@ -89,7 +88,7 @@
 	    public function edit($id, $data)
 	    {
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');	    	
-	    	$query = mysqli_query($mysqli, "update $this->table set id_kunjungan = '".$data['id_kunjungan']."', no_rm = '".$data['no_rm']."', nama_pasien='".$data['nama_pasien']."', diagnosis='".$data['diagnosis']."', tindakan ='".$data['tindakan']."', tanggal_kunjungan ='".$data['tanggal_kunjungan']."'");
+	    	$query = mysqli_query($mysqli, "update $this->table set diagnosis='".$data['diagnosis']."', tindakan ='".$data['tindakan']."' where id_kunjungan = '$id'");
 
 	    	if($query == true){
 
@@ -105,7 +104,7 @@
 
 	    public function modal_edit($id){
 	    	$mysqli = mysqli_connect('localhost','root','','db_poligigi');
-	    	$query = mysqli_query($mysqli, "select * from $this->table where id_kunjungan = '$id_kunjungan' ");
+	    	$query = mysqli_query($mysqli, "select * from $this->table where id_kunjungan = '$id' ");
 	    	$result = mysqli_fetch_assoc($query);
 	    	return $result;
 	    }
