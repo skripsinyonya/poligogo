@@ -23,7 +23,7 @@ $date = date('Y-m-d');
 				<input type="text" name="id_tindakan" required="" class="form-control" id="frm-id_tindakan">
 			</div>
 		</div>
-		<div id="show-tindakan"></div>
+		<div id="show-tindakan form-group"></div>
 		<div class="form-group">
 			<div class='col-md-3'>
 				<label for="nip">Tanggal Di Rawat</label>
